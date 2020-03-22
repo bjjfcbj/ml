@@ -22,7 +22,7 @@ def nslconvert(nsldata):
         if isinstance(cvdata[i], bytes):
             cvdata[i] = int(cvdata[i])
 
-    return np.array(cvdata)
+    return torch.tensor(cvdata)
 
 
 class NslKddset(torch.utils.data.Dataset):
@@ -38,6 +38,7 @@ class NslKddset(torch.utils.data.Dataset):
         # convert origin data
         cvdata = nslconvert(self.nsldata[index])
         realdata, label = cvdata[:-1], cvdata[-1]
+        realdata = realdata.unsqueeze(0)
         def lamb(label): return [0, 1] if label else [1, 0]
 
         if self.transform is not None:
