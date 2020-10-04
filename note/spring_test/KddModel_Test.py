@@ -1,18 +1,18 @@
 import unittest
-import KddModel
+import KddModel as kdd
 
 
 class Kddtest(unittest.TestCase):
     def setUp(self):
         print("test start...")
-        self.testdata = KddModel.nsl_csv_read(
-            '../../data/kdd/kddcup10.corrected')
-        self.kddset = KddModel.Kddset(
-            'kddcup10.corrected', root='../../data/kdd/')
+        self.testdata = kdd.nsl_csv_read('data/nsl-kdd/KDDTrain+.txt')
 
     def test_kddset(self):
         for i in range(5):
-            data, label = self.kddset[i]
+            data = self.testdata[i]
+            print(data.shape)
+            print(data)
+            data, label = kdd.nslconvert(data)
             print(data.shape)
             print(label)
 

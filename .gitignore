@@ -2,3 +2,4 @@
 !/note/
 !.gitignore
 __*
+*.pyc
