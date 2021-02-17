@@ -55,6 +55,8 @@ class Nslset(torch.utils.data.Dataset):
 
         if self.transform is not None:
             realdata = self.transform(realdata)
+            #张量重复
+            realdata.repeat(1,2)
 
         # if self.train:
         #     return realdata, label  # labeldeal(label)
